@@ -15,6 +15,7 @@ double ** harris(byte **I, double** filter, int filter_size, float lambda, long 
 byte ** convolve(byte **I, double** filter, int filter_size, long nrl, long nrh, long ncl, long nch);
 double ** gradient_direction_interest_points(byte **I, double** filter, int filter_size, long nrl, long nrh, long ncl, long nch);
 void sobel(byte **I, double **Ix, double **Iy, long nrl, long nrh, long ncl, long nch);
+void binarize(byte **I, byte **B, int treshold, long nrl, long nrh, long ncl, long nch);
 
 
 #endif // __TRACKING_H__

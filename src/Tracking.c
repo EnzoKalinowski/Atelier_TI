@@ -177,3 +177,22 @@ void sobel(byte **I, double **Ix, double **Iy, long nrl, long nrh, long ncl, lon
 
 }
 
+void binarize(byte **I, byte **B, int treshold, long nrl, long nrh, long ncl, long nch)
+{
+	int i, j;
+	for (i = nrl; i < nrh; i++)
+	{
+		for (j = ncl; j < nch; j++)
+		{
+			if (I[i][j] > treshold)
+			{
+				B[i][j] = 255;
+			}
+			else
+			{
+				B[i][j] = 0;
+			}
+		}
+	}
+}
+
