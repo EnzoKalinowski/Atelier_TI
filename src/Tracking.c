@@ -153,3 +153,27 @@ byte ** convolve(byte **I, double** filter, int filter_size, long nrl, long nrh,
 	free_dmatrix(C, nrl, nrh, ncl, nch);
 	return out;
 }
+
+void sobel(byte **I, double **Ix, double **Iy, long nrl, long nrh, long ncl, long nch)
+{
+	int i,j;
+	long total;
+	int SobelH[3][3]={{-1,0,1},{-2,0,2},{-1,0,1} };
+	int SobelV[3][3]={{-1,-2,-1},{0,0,0},{1,2,1} };
+
+	for(i=nrl+1;i<nrh;i++)
+	{	
+		for(j=ncl+1;j<nch;j++)
+		{
+			//convolution Sobel horizontal
+			total=I[i-1][j-1]*SobelH[0][0] + I[i][j-1]*SobelH[1][0] + I[i+1][j-1]*SobelH[2][0] + I[i-1][j]*SobelH[0][1] + I[i][j]*SobelH[1][1] + I[i+1][j]*SobelH[2][1] + I[i-1][j+1]*SobelH[0][2] + I[i][j+1]*SobelH[1][2] + I[i+1][j+1]*SobelH[2][2];
+			Ix[i][j]=total/4;
+
+			//convolution Sobel horizontal
+			total=I[i-1][j-1]*SobelV[0][0] + I[i][j-1]*SobelV[1][0] + I[i+1][j-1]*SobelV[2][0] + I[i-1][j]*SobelV[0][1] + I[i][j]*SobelV[1][1] + I[i+1][j]*SobelV[2][1] + I[i-1][j+1]*SobelV[0][2] + I[i][j+1]*SobelV[1][2] + I[i+1][j+1]*SobelV[2][2];
+			Iy[i][j]=total/4;
+		}
+	}
+
+}
+
