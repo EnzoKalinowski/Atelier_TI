@@ -10,6 +10,6 @@
 #include "./NRC/nrarith.h"
 #include "./NRC/nralloc.h"
 
-void ** vecteur (byte **imgT, byte **imgTplusUn, int *x, int *y, long nrl, long nrh, long ncl, long nch);
+void ** Vecteur (byte **imgT, byte **imgTplusUn, int *x, int *y, long nrl, long nrh, long ncl, long nch);
 
 #endif // __MOVEMENT_H__

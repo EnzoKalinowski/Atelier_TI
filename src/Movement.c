@@ -36,7 +36,7 @@ void ** Vecteur (byte **imgT, byte **imgTplusUn, int *x, int *y, long nrl, long 
 			}
 		}
 	}
-	x = xplus;
-	y = yplus;
+	x = &xplus;
+	y = &yplus;
 	free_imatrix (tabaccu, nrl, nrh, ncl, nch);
 }

@@ -211,16 +211,19 @@ void convert_rgb8_to_byte(rgb8 **I, byte **B, long nrl, long nrh, long ncl, long
 {
 	int i, j;
 	int moy;
+	printf("dans la fonction changee\n");
 	for (i = nrl; i < nrh; i++)
 	{
 		for (j = ncl; j < nch; j++)
 		{
+			printf("i = %d, j = %d\n",i,j);
 			moy= (I[i][j].r +I[i][j].g + I[i][j].b)/3;
-
-				B[i][j] = moy;
-			
+			printf("apres le calcul\n");
+			B[i][j] = (byte)moy;
+			printf("apres B[i][j] = moy;");
 		}
 	}
+	printf("apres les boucles for\n");
 }
 
 void convert_dmatrix_bmatrix(double **D, byte **B, long nrl, long nrh, long ncl, long nch)
