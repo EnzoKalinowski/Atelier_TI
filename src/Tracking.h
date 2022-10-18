@@ -9,6 +9,8 @@
 #include "./NRC/nrarith.h"
 #include "./NRC/nralloc.h"
 
+
+
 /**
  * @brief Create a gaussian filter object
  * 
@@ -64,7 +66,7 @@ double ** gradient_direction_interest_points(byte **I, double** filter, int filt
 /**
  * @brief image gradient
  * 
- * @param I 
+ * @param I input Image
  * @param Ix horizontal gradient
  * @param Iy vertical gradient
  * @param nrl 
@@ -73,6 +75,19 @@ double ** gradient_direction_interest_points(byte **I, double** filter, int filt
  * @param nch 
  */
 void sobel(byte **I, double **Ix, double **Iy, long nrl, long nrh, long ncl, long nch);
+
+/**
+ * @brief return norm of gradient with horizontal et vertical gradient matrix
+ * 
+ * @param SobelX 
+ * @param SobelY 
+ * @param Sobel 
+ * @param nrl 
+ * @param nrh 
+ * @param ncl 
+ * @param nch 
+ */
+void norm_gradient(double **SobelX, double **SobelY, double **Sobel, long nrl, long nrh, long ncl, long nch);
 
 /**
  * @brief binarize an image
@@ -87,5 +102,15 @@ void sobel(byte **I, double **Ix, double **Iy, long nrl, long nrh, long ncl, lon
  */
 void binarize(byte **I, byte **B, int treshold, long nrl, long nrh, long ncl, long nch);
 
-
+/**
+ * @brief convert an rgb8 matrix into a byte matrix
+ * 
+ * @param I rgb8 input matrix
+ * @param B byte output matrix
+ * @param nrl 
+ * @param nrh 
+ * @param ncl 
+ * @param nch 
+ */
+void convert_rgb8_to_byte(rgb8 **I, byte **B, long nrl, long nrh, long ncl, long nch);
 #endif // __TRACKING_H__

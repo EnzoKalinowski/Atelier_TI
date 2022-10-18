@@ -177,6 +177,17 @@ void sobel(byte **I, double **Ix, double **Iy, long nrl, long nrh, long ncl, lon
 
 }
 
+void norm_gradient(double **SobelX, double **SobelY, double **Sobel, long nrl, long nrh, long ncl, long nch)
+{
+	for(int i=nrl;i<nrh;i++)
+	{	
+		for(int j=ncl;j<nch;j++)
+		{
+			Sobel[i][j]=sqrt(pow(SobelX[i][j],2) + pow(SobelY[i][j],2));
+		}
+	}	
+}
+
 void binarize(byte **I, byte **B, int treshold, long nrl, long nrh, long ncl, long nch)
 {
 	int i, j;
@@ -196,3 +207,18 @@ void binarize(byte **I, byte **B, int treshold, long nrl, long nrh, long ncl, lo
 	}
 }
 
+void convert_rgb8_to_byte(rgb8 **I, byte **B, long nrl, long nrh, long ncl, long nch)
+{
+	int i, j;
+	int moy;
+	for (i = nrl; i < nrh; i++)
+	{
+		for (j = ncl; j < nch; j++)
+		{
+			moy= (I[i][j].r +I[i][j].g + I[i][j].b)/3;
+
+				B[i][j] = moy;
+			
+		}
+	}
+}
