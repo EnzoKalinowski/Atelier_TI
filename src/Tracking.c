@@ -36,7 +36,7 @@ double ** harris(byte **I, double** filter, int filter_size, float lambda, long 
 
 	int max=filter_size/2;
 
-	C= dmatrix(nrl, nrh, ncl, nch);
+	C= dmatrix0(nrl, nrh, ncl, nch);
 	Ix= dmatrix(nrl,nrh,ncl,nch);
 	Iy= dmatrix(nrl,nrh,ncl,nch);
 
@@ -49,16 +49,19 @@ double ** harris(byte **I, double** filter, int filter_size, float lambda, long 
 				Ix_square=0;
 				Iy_square=0;
 				IxIy=0;
-				
+
 				for (int i=-max;i<=max;i++)
 				{
 					for(int j=-max;j<=max;j++)
 					{
+
 						Ix_square+= filter[i+max][j+max]*pow(Ix[x+i][y+j],2);
 						Iy_square+= filter[i+max][j+max]*pow(Iy[x+i][y+j],2);
 						IxIy+= filter[i+max][j+max]*(Ix[x+i][y+j]*Iy[x+i][y+j]);
+
 					}
 				}
+
 				C[x][y]=(Ix_square*Iy_square)-(IxIy)-(lambda*pow(Ix_square+Iy_square,2));
 			}
 		}
@@ -211,19 +214,14 @@ void convert_rgb8_to_byte(rgb8 **I, byte **B, long nrl, long nrh, long ncl, long
 {
 	int i, j;
 	int moy;
-	printf("dans la fonction changee\n");
 	for (i = nrl; i < nrh; i++)
 	{
 		for (j = ncl; j < nch; j++)
 		{
-			printf("i = %d, j = %d\n",i,j);
 			moy= (I[i][j].r +I[i][j].g + I[i][j].b)/3;
-			printf("apres le calcul\n");
 			B[i][j] = (byte)moy;
-			printf("apres B[i][j] = moy;");
 		}
 	}
-	printf("apres les boucles for\n");
 }
 
 void convert_dmatrix_bmatrix(double **D, byte **B, long nrl, long nrh, long ncl, long nch)
