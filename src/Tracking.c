@@ -222,3 +222,15 @@ void convert_rgb8_to_byte(rgb8 **I, byte **B, long nrl, long nrh, long ncl, long
 		}
 	}
 }
+
+void convert_dmatrix_bmatrix(double **D, byte **B, long nrl, long nrh, long ncl, long nch)
+{
+
+	for(int i=nrl;i<nrh;i++)
+	{	
+		for(int j=ncl;j<nch;j++)
+		{
+			B[i][j]=abs(D[i][j]);
+		}
+	}
+}

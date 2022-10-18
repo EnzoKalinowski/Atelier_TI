@@ -113,4 +113,16 @@ void binarize(byte **I, byte **B, int treshold, long nrl, long nrh, long ncl, lo
  * @param nch 
  */
 void convert_rgb8_to_byte(rgb8 **I, byte **B, long nrl, long nrh, long ncl, long nch);
+
+/**
+ * @brief convert a double matrix in a byte matrix
+ * 
+ * @param D double matrix
+ * @param B byte matrix
+ * @param nrl 
+ * @param nrh 
+ * @param ncl 
+ * @param nch 
+ */
+void convert_dmatrix_bmatrix(double **D, byte **B, long nrl, long nrh, long ncl, long nch);
 #endif // __TRACKING_H__
