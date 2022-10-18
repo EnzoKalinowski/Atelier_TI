@@ -33,7 +33,7 @@ void RGBtoHSV(byte _r, byte _g, byte _b, double *h, double *s, double *v){
     *v = cmax;
 }
 
-byte** pickColor(rgb8 **I, byte r, byte g, byte b, long nrl, long nrh, long ncl, long nch){
+byte** pickColorHSV(rgb8 **I, byte r, byte g, byte b, long nrl, long nrh, long ncl, long nch){
     double _h, _s, _v, h, s, v;
     RGBtoHSV(r, g, b, &_h, &_s, &_v);
 
@@ -45,6 +45,37 @@ byte** pickColor(rgb8 **I, byte r, byte g, byte b, long nrl, long nrh, long ncl,
             col = I[i][j];
             RGBtoHSV(col.r, col.g, col.b, &h, &s, &v);
             if((_h-10 < h && h < _h+10) && (_s-0.1 < s && s < _s+0.1)){
+                res[i][j] = 255;
+            }else{
+                res[i][j] = 0;
+            }
+        }
+    }
+
+    return res;
+}
+
+byte** pickColorRGB(rgb8 **I, byte r, byte g, byte b, long nrl, long nrh, long ncl, long nch){
+    byte **res = bmatrix(nrl, nrh, ncl, nch);
+    rgb8 col;
+    double threshold = 0.2;
+    double _total, total;
+    double rr, rg, rb, _rr, _rg, _rb;
+
+    _total = r + g + b;
+    _rr = r/_total;
+    _rg = g/_total;
+    _rb = b/_total;
+
+    for(int i = nrl; i < nrh; i++){
+        for(int j = ncl; j < nch; j++){
+            col = I[i][j];
+            total = col.r + col.g + col.b;
+            rr = col.r/total;
+            rg = col.g/total;
+            rb = col.b/total;
+
+            if((_rr-threshold < rr && rr < _rr+threshold) && (_rg-threshold < rg && rg < _rg+threshold) && (_rb-threshold < rb && rb < _rb+threshold)){
                 res[i][j] = 255;
             }else{
                 res[i][j] = 0;
