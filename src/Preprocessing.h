@@ -14,5 +14,5 @@
 void RGBtoHSV(byte _r, byte _g, byte _b, double *h, double *s, double *v);
 byte** pickColor(rgb8 **I, byte r, byte g, byte b, long nrl, long nrh, long ncl, long nch);
 rgb8** convertMatToRGB8(cv::Mat mat);
-
+int isRed(rgb8 pxl);
 #endif

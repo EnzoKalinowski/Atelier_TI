@@ -108,3 +108,17 @@ rgb8** convertMatToRGB8(cv::Mat mat, long *nrl, long *nrh, long *ncl, long *nch)
 
     return out;
 }
+
+int isRed(rgb8 pxl){
+    uint8 red = pxl.r;
+    uint8 green = pxl.g;
+    uint8 blue = pxl.b;
+
+    int sum = red + green +blue;
+
+    float redRatio = red/sum;
+    float greenRatio = green/sum;
+    float blueRatio = blue/sum;
+
+    (redRatio > blueRatio) && (redRatio > greenRatio) ? 1 : 0;
+}
