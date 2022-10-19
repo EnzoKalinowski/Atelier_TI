@@ -231,7 +231,7 @@ void convert_dmatrix_bmatrix(double **D, byte **B, long nrl, long nrh, long ncl,
 	{	
 		for(int j=ncl;j<nch;j++)
 		{
-			B[i][j]=abs(D[i][j]);
+			B[i][j]=abs(D[i][j])/255;
 		}
 	}
 }
