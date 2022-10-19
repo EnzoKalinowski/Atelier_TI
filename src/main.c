@@ -26,10 +26,10 @@ int main(){
     //on ouvre les deux images;
     //printf("On ouvre les deux Images\n");
     //printf("On ouvre la premiere Image\n");
-    rgb8 **ImgT = LoadPPM_rgb8matrix("../droite.ppm", &nrl, &nrh, &ncl, &nch);
+    rgb8 **ImgT = LoadPPM_rgb8matrix("../droitePetite.ppm", &nrl, &nrh, &ncl, &nch);
     //printf("On a ouvert la premiere img\n");
     //printf("On ouvre la seconde Image\n");
-    rgb8 **ImgTPlusUn = LoadPPM_rgb8matrix("../gauche.ppm", &nrl, &nrh, &ncl, &nch);
+    rgb8 **ImgTPlusUn = LoadPPM_rgb8matrix("../gauchePetite.ppm", &nrl, &nrh, &ncl, &nch);
     //printf("On a ouvert la seconde img\n");
     byte **ImgTGris;
     ImgTGris=bmatrix(nrl, nrh, ncl, nch);
