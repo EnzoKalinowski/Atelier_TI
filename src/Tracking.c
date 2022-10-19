@@ -235,3 +235,29 @@ void convert_dmatrix_bmatrix(double **D, byte **B, long nrl, long nrh, long ncl,
 		}
 	}
 }
+
+int* getRedBarycenter(rgb8 **I, long nrl, long nrh, long ncl, long nch){
+    int[256] tabRow;
+    int[256] tabCol;
+    int[2] res;
+
+    for(int i=nrl;i<nrh;i++)
+    {
+        for(int j=ncl;j<nch;j++)
+        {
+            if(isRed(I[i][j])){
+                tabRow[i]++;
+                tabCol[j]++;
+            }
+        }
+    }
+    for(int index = 0; index < 256; index ++){
+        res[0] += (index * tabRow[index]);
+        res[1] += (index * tabCol[index]);
+    }
+
+    res[0] = res[0]/256;
+    res[1] = res[1]/256;
+
+    return res;
+}
