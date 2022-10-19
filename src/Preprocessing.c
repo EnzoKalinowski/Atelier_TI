@@ -85,3 +85,26 @@ byte** pickColorRGB(rgb8 **I, byte r, byte g, byte b, long nrl, long nrh, long n
 
     return res;
 }
+
+rgb8** convertMatToRGB8(cv::Mat mat, long *nrl, long *nrh, long *ncl, long *nch){
+    int width = mat.cols;
+    int height = mat.rows;
+
+    *nrl = 0;
+    *nrh = height-1;
+    *ncl = 0;
+    *nch = width-1;
+
+    rgb8 **out = rgb8matrix(*nrl, *nrh, *ncl, *nch);
+
+    for(int i = *nrl; i < *nrh; i++){
+        for(int j = *ncl; j < *nch; j++){
+            Vec3b color = image.at<Vec3b>(Point(i, j));
+            res[i][j].r = color[0];
+            res[i][j].g = color[1];
+            res[i][j].b = color[2];
+        }
+    }
+
+    return out;
+}
